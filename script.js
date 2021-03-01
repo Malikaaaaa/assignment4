@@ -1,19 +1,19 @@
-const firstName = document.getElementById("firstname");  // element with id firstname
-const startingBid = document.getElementById("startingbid"); // element with id startingbid
-const education = document.getElementById("education"); // element with id education
-const networth = document.getElementById("networth"); // element with id education
-const skills = document.getElementsByClassName("skills"); // HTMLCollection (like an array of elements, but not an actual array)
+const firstName = document.getElementById("firstname");  
+const startingBid = document.getElementById("startingbid"); 
+const education = document.getElementById("education"); 
+const networth = document.getElementById("networth"); 
+const skills = document.getElementsByClassName("skills"); 
 const age = document.getElementsByName("age");
 const button = document.getElementById("submit");
 const love_letter = document.getElementById("love_letter");
 
 const calculate = () => {
-    let name = firstName.value; // name of the groom/bride
-    let price = Number(startingBid.value); // turns your starting bid string into number
+    let name = firstName.value; 
+    let price = Number(startingBid.value); 
     let letter = love_letter.value;
     if (name != "") { 
         price = getNewPrice(price, education);
-        // FINISH THE CODE !!!!!!!!!!!!!!!!
+        
         let person = {
             fullName: name,
             finalPrice: price,
@@ -30,9 +30,8 @@ const getNewPrice = (price, criteria) => {
     return price * Number(criteria.value);
 }
 
-/* if you will set an attribute class="skills" for each input checkbox and use this selector 
---> document.getElementsByClassName("skills"), it will return you HTMLCollection that you can pass to this function as an argument*/
-const getCheckboxValuesForLoop = (html_collection, price) => { // Check this one, it should work for values with coefficients and with integers
+
+const getCheckboxValuesForLoop = (html_collection, price) => { 
 	for (let i=0; i < html_collection.length; i++) {  
 		if (html_collection[i].checked && Number.isInteger(Number(html_collection[i].value))) {
 			price = price + Number(html_collection[i].value)
@@ -44,10 +43,8 @@ const getCheckboxValuesForLoop = (html_collection, price) => { // Check this one
 	return price;
 }
 
-/* if you will set an attribute class="skills" for each input checkbox and use this selector 
---> document.getElementsByClassName("skills"), it will return you HTMLCollection that you can pass to this function as an argument*/
-const getCheckboxValuesFilterReduce = (html_collection, price) => { // create a function that accepts your HTMLCollection of elements and the current price
-    let list = Array.from(html_collection).filter(filteration) // this method turn your HTMLCollection into array
+const getCheckboxValuesFilterReduce = (html_collection, price) => { 
+    let list = Array.from(html_collection).filter(filteration) 
     let result = list.reduce(reducer, price)
     return result;
 }
@@ -59,8 +56,6 @@ const filteration = (item) => {
     return item.checked;
 }
 
-/* if you will set an attribute name="age" for each input radio and use this selector 
---> document.getElementsByName("age"), it will return you NodeList that you can pass to this function as an argument*/
 const getRadioValue = (node_list, price) => {  
     node_list.forEach(item => {
         if (item.checked) {
